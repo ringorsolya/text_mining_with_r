@@ -1,3 +1,70 @@
-# A kvantitatív szövegelemzés és szövegbányászat alapfogalmai
+---
+output:
+  word_document: default
+  html_document: default
+---
+# Az adatkezelés és a vizualizáció alapjai
 
-harmadik fejezet
+## A pipe operátor 
+
+A pipe operátor `%>%` mindig egy parancs kimenetét veszi fel, és a következő parancs bemenetévé teszi azt, így segítségével tulajdonképpen folyamat láncolatokat (pipeline) képezhetünk. Mivel az R egy funkcionális nyelv, az R-ben írt kódok gyakran sok zárójelet tartalmaznak. Összetett kódok esetén sok zárójelet kellene egymásba ágyazni, ami megnehezítené a kód olvasását és megértését, ekkor segít a pipe operator. Ha például azt akarjuk összeszámolni, hogy hány Anna nevű lány született, azt megtehetjük zárójelek egymásba ágyazásával:
+
+```
+sum(select(filter(babynames,sex=="F",name=="Anna"),n))
+
+```
+De ugyanezt megkaphatjuk a pipe operator használatával is:
+
+```
+babynames%>%filter(sex=="F",name=="Anna")%>%
+            select(n)%>%
+            sum 
+```
+## Egy data frame meghatározott sorainak leválogatása
+
+A következőkben az előző fejezetben megismert data frame meghatározott sorainak leválogatásra láthatunk példát a fentebb bemutatott pipe operátor segítségével.
+Ehhez az ```install.packages()``` paranccsal installáljuk, majd a ```library()```függvény segítségével olvassuk be a következő csomagokat:
+
+```{r eval=FALSE}
+install.packages(readr)
+install.packages(tidyr)
+install.packages(dplyr)
+insatll.packages(purrr)
+install.packages(ggplot2)
+install.packages(gapminder)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(readr)
+library(tidyr)
+library(dplyr)
+library(purrr)
+library(ggplot2)
+library(gapminder)
+
+```
+
+Ezután hozzuk létre a gapminder nevű data frame-t: 
+
+```{r}
+gapminder_df <- gapminder
+```
+A jobb felső ablak environment fülén láthatjuk, hogy a data frame 1704 megfigyelést, azaz sort és 6 változót, vagyis oszlopot tartalmaz. 
+A sorok leválogatásához a  ```dplyr``` csomag ```filter()``` parancsát használva, a ``` %>% ``` operátor segítségével leválogatjuk azon országok 1962-es adatait, ahol a várható élettartam meghaladta a 70 évet:
+
+```{r}
+gapminder_df %>% 
+    filter(year == 1962, lifeExp > 70)
+```
+    
+De ugyanígy leválogathatjuk a data frame-ből az adatokat egy karakterlánc és egy logikai művelet alapján. 
+
+```{r}
+gapminder_df %>% 
+    filter(country == "Sweden", year > 1990)
+```
+Itt tehát a data frame azon sorait szeretnénk látni, ahol az ország megegyezik a „Sweden” karakterlánccal az év pedig nagyobb, mint 1990.
+
+A ```select()``` parancs segítségével leválogathatunk oszlopokat a data frame-ből, a ```mutate()``` segítségével pedig új oszlopot adhatunk hozzá
+
+
