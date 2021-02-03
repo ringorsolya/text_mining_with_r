@@ -1,25 +1,4 @@
----
-output:
-  word_document: default
-  html_document: default
----
-# Az adatkezelés és a vizualizáció alapjai
 
-## A pipe operátor 
-
-A pipe operátor `%>%` mindig egy parancs kimenetét veszi fel, és a következő parancs bemenetévé teszi azt, így segítségével tulajdonképpen folyamat láncolatokat (pipeline) képezhetünk. Mivel az R egy funkcionális nyelv, az R-ben írt kódok gyakran sok zárójelet tartalmaznak. Összetett kódok esetén sok zárójelet kellene egymásba ágyazni, ami megnehezítené a kód olvasását és megértését, ekkor segít a pipe operator. Ha például azt akarjuk összeszámolni, hogy hány Anna nevű lány született, azt megtehetjük zárójelek egymásba ágyazásával:
-
-```
-sum(select(filter(babynames,sex=="F",name=="Anna"),n))
-
-```
-De ugyanezt megkaphatjuk a pipe operator használatával is:
-
-```
-babynames%>%filter(sex=="F",name=="Anna")%>%
-            select(n)%>%
-            sum 
-```
 ## Egy data frame meghatározott sorainak leválogatása
 
 A következőkben az előző fejezetben megismert data frame meghatározott sorainak leválogatásra láthatunk példát a fentebb bemutatott pipe operátor segítségével.
