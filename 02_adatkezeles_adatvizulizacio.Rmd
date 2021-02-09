@@ -13,7 +13,7 @@ De ugyanezt megkaphatjuk a` %>%` használatával is:
 babynames %>%
 filter(sex == "F", name == "Anna") %>%
             select(n) %>%
-            sum ()
+            sum()
 ```            
 
 
@@ -207,7 +207,6 @@ ggplot(data = diamonds) +
 
 Arra ggplot2 segítségével arra is lehetőségünk van, hogy csv-ből beolvasott adatainkat vizualizáljuk.
 
- 
 ```{r warning=FALSE, message=FALSE, eval=FALSE}
 plot_cap_1 <- read.csv("data/plot_cap_1.csv", head = TRUE, sep = ";") # beolvassuk a csv fájlt, megadva, hogy az egyes oszlopokat ';' határolja
 ggplot(plot_cap_1, aes(Year, fill = Subtopic)) + # megadjuk, hogy az adatokat évente és azon belül subtopic-ok szerint szeretnénk rendezni
@@ -222,6 +221,7 @@ ggplot(plot_cap_1, aes(Year, fill = Subtopic)) + # megadjuk, hogy az adatokat é
   theme_minimal() +
   theme(plot.title = element_text(size = 12)) # az ábra címének betumérete
 ```
+
 A csv-ből belolvasott adatainból kördiagramot is készíthetünk
 
 ```{r warning=FALSE, message=FALSE, eval=FALSE}

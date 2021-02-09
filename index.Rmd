@@ -6,6 +6,7 @@ documentclass: book
 link-citations: true
 output:
   bookdown::gitbook: default
+  latex_document: default
 ---
 
 # Bevezetés
