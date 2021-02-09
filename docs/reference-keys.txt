@@ -1,7 +1,10 @@
 bevezetés
 a-kvantitatív-szövegelemzés-és-szövegbányászat-alapfogalmai
 r-és-rstudio
-a-kvantitatív-szövegelemzés-és-szövegbányászat-alapfogalmai-1
+az-adatkezelés-és-vizualizáció-alapjai
+a-pipe-operátor
+egy-data-frame-meghatározott-sorainak-leválogatása
+vizualizáció
 leíró-statisztika-szózsák-és-szóeloszlások
 a-szövegek-reprezentálása-a-vektortérben
 a-korpuszépítés-problémái-és-a-szövegelőkészítés
