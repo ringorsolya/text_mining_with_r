@@ -50,6 +50,9 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
 
 <style type="text/css">
@@ -130,11 +133,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Bevezetés</a></li>
 <li class="chapter" data-level="2" data-path="a-kvantitatív-szövegelemzés-és-szövegbányászat-alapfogalmai.html"><a href="a-kvantitatív-szövegelemzés-és-szövegbányászat-alapfogalmai.html"><i class="fa fa-check"></i><b>2</b> A kvantitatív szövegelemzés és szövegbányászat alapfogalmai</a></li>
-<li class="chapter" data-level="3" data-path="az-adatkezelés-és-vizualizáció-alapjai.html"><a href="az-adatkezelés-és-vizualizáció-alapjai.html"><i class="fa fa-check"></i><b>3</b> Az adatkezelés és vizualizáció alapjai</a>
+<li class="chapter" data-level="3" data-path="az-adatkezelés-r-ben.html"><a href="az-adatkezelés-r-ben.html"><i class="fa fa-check"></i><b>3</b> Az adatkezelés R-ben</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="az-adatkezelés-és-vizualizáció-alapjai.html"><a href="az-adatkezelés-és-vizualizáció-alapjai.html#a-pipe-operátor"><i class="fa fa-check"></i><b>3.1</b> A pipe operátor</a></li>
-<li class="chapter" data-level="3.2" data-path="az-adatkezelés-és-vizualizáció-alapjai.html"><a href="az-adatkezelés-és-vizualizáció-alapjai.html#egy-data-frame-meghatározott-sorainak-leválogatása"><i class="fa fa-check"></i><b>3.2</b> Egy data frame meghatározott sorainak leválogatása</a></li>
-<li class="chapter" data-level="3.3" data-path="az-adatkezelés-és-vizualizáció-alapjai.html"><a href="az-adatkezelés-és-vizualizáció-alapjai.html#vizualizáció"><i class="fa fa-check"></i><b>3.3</b> Vizualizáció</a></li>
+<li class="chapter" data-level="3.1" data-path="az-adatkezelés-r-ben.html"><a href="az-adatkezelés-r-ben.html#adatok-importálása-és-exportálása"><i class="fa fa-check"></i><b>3.1</b> Adatok importálása és exportálása</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="az-adatkezelés-r-ben.html"><a href="az-adatkezelés-r-ben.html#szöveges-dokumentumok-importálása"><i class="fa fa-check"></i><b>3.1.1</b> Szöveges dokumentumok importálása</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="az-adatkezelés-r-ben.html"><a href="az-adatkezelés-r-ben.html#adatok-exportálása"><i class="fa fa-check"></i><b>3.2</b> Adatok exportálása</a></li>
+<li class="chapter" data-level="3.3" data-path="az-adatkezelés-r-ben.html"><a href="az-adatkezelés-r-ben.html#a-pipe-operátor"><i class="fa fa-check"></i><b>3.3</b> A pipe operátor</a></li>
+<li class="chapter" data-level="3.4" data-path="az-adatkezelés-r-ben.html"><a href="az-adatkezelés-r-ben.html#muveletek-a-date-framekkel"><i class="fa fa-check"></i><b>3.4</b> Muveletek a date framekkel</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="az-adatkezelés-r-ben.html"><a href="az-adatkezelés-r-ben.html#megfigyelések-szűrése-filter"><i class="fa fa-check"></i><b>3.4.1</b> Megfigyelések szűrése: <code>filter()</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="az-adatkezelés-r-ben.html"><a href="az-adatkezelés-r-ben.html#változók-kiválogatása-select"><i class="fa fa-check"></i><b>3.4.2</b> Változók kiválogatása: <code>select()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="az-adatkezelés-r-ben.html"><a href="az-adatkezelés-r-ben.html#új-változók-létrehozása-mutate"><i class="fa fa-check"></i><b>3.4.3</b> Új változók létrehozása: <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.4.4" data-path="az-adatkezelés-r-ben.html"><a href="az-adatkezelés-r-ben.html#csoportonkénti-statisztikák-group_by-és-summarize"><i class="fa fa-check"></i><b>3.4.4</b> Csoportonkénti statisztikák: <code>group_by()</code> és <code>summarize()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="az-adatkezelés-r-ben.html"><a href="az-adatkezelés-r-ben.html#munka-karakter-vektorokkaladatkezeles-4"><i class="fa fa-check"></i><b>3.5</b> Munka karakter vektorokkal</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="leíró-statisztika-szózsák-és-szóeloszlások.html"><a href="leíró-statisztika-szózsák-és-szóeloszlások.html"><i class="fa fa-check"></i><b>4</b> Leíró statisztika: szózsák és szóeloszlások</a></li>
 <li class="chapter" data-level="5" data-path="a-szövegek-reprezentálása-a-vektortérben.html"><a href="a-szövegek-reprezentálása-a-vektortérben.html"><i class="fa fa-check"></i><b>5</b> A szövegek reprezentálása a vektortérben</a></li>
@@ -150,14 +164,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.1" data-path="függelék.html"><a href="függelék.html#az-r-és-az-rstudio-használata"><i class="fa fa-check"></i><b>13.1</b> Az R és az RStudio használata</a>
 <ul>
 <li class="chapter" data-level="13.1.1" data-path="függelék.html"><a href="függelék.html#az-rstudio-kezdőfelülete"><i class="fa fa-check"></i><b>13.1.1</b> Az RStudio kezdőfelülete</a></li>
-<li class="chapter" data-level="13.1.2" data-path="függelék.html"><a href="függelék.html#projekt-alapú-munka"><i class="fa fa-check"></i><b>13.1.2</b> Projekt alapú munka</a></li>
+<li class="chapter" data-level="13.1.2" data-path="függelék.html"><a href="függelék.html#projektmunka"><i class="fa fa-check"></i><b>13.1.2</b> Projekt alapú munka</a></li>
 <li class="chapter" data-level="13.1.3" data-path="függelék.html"><a href="függelék.html#scriptek-szerkesztése-függvények-használata"><i class="fa fa-check"></i><b>13.1.3</b> Scriptek szerkesztése, függvények használata</a></li>
-<li class="chapter" data-level="13.1.4" data-path="függelék.html"><a href="függelék.html#r-csomagok"><i class="fa fa-check"></i><b>13.1.4</b> R csomagok</a></li>
+<li class="chapter" data-level="13.1.4" data-path="függelék.html"><a href="függelék.html#packages"><i class="fa fa-check"></i><b>13.1.4</b> R csomagok</a></li>
 <li class="chapter" data-level="13.1.5" data-path="függelék.html"><a href="függelék.html#objektumok-tárolása-értékadás"><i class="fa fa-check"></i><b>13.1.5</b> Objektumok tárolása, értékadás</a></li>
 <li class="chapter" data-level="13.1.6" data-path="függelék.html"><a href="függelék.html#vektorok"><i class="fa fa-check"></i><b>13.1.6</b> Vektorok</a></li>
 <li class="chapter" data-level="13.1.7" data-path="függelék.html"><a href="függelék.html#faktorok"><i class="fa fa-check"></i><b>13.1.7</b> Faktorok</a></li>
 <li class="chapter" data-level="13.1.8" data-path="függelék.html"><a href="függelék.html#data-frame"><i class="fa fa-check"></i><b>13.1.8</b> Data frame</a></li>
 </ul></li>
+<li class="chapter" data-level="13.2" data-path="függelék.html"><a href="függelék.html#vizualizáció"><i class="fa fa-check"></i><b>13.2</b> Vizualizáció</a></li>
 </ul></li>
 </ul>
 
