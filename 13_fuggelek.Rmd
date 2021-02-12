@@ -21,7 +21,8 @@ Az ***(1) editor*** ablak  szolgál a kód beírására, futtatására és ment�
 
 
 
-### Projekt alapú munka
+### Projekt alapú munka {#projektmunka}
+
 
 Bár nem kötelező, de javasolt, hogy az RStudio-ban projekt alapon dolgozzunk, mivel így az összes – az adott projekttel kapcsolatos fájlt – egy mappában tárolhatjuk. Új projekt beállítását a `File->New Project` menüben tehetjük meg, ahol a saját gépünk egy könyvtárát kell kiválasztani, ahová az R scripteket, az adat- és előzményfájlokat menti. Ezenkívül a `Tools->Global Options->General` menüpont alatt le kell tiltani a *„Restore most recently opened project at startup”* és a *„Restore .RData ino workspace at startup”* beállítást, valamint *„Save workspace to .RData on exit”* értékre be kell állítani a *„Never”*  értéket. 
 
@@ -65,7 +66,7 @@ Az R-ben beépített **függvények (function)** állnak rendelkezésünkre a sz
 Az R súgórendszere a `help.start()` utasítással indítható el. Egy adott függvényre vonatkozó súgórészlet a függvények neve elé kérdőjel írásával, vagy a `help()` argumentumába a kérdéses függvény nevének beírásával jeleníthető meg (pl.: `help(sum)`).
 
 
-### R csomagok
+### R csomagok {#packages}
 Az R-ben telepíthetők kiegészítő csomagok (packages), amelyek alapértelmezetten el nem érhető algoritmusokat, függvényeket tartalmaznak. A csomagok saját dokumentációval rendelkeznek, amelyeket fel kell tüntetni a használatukkal készült publikációink hivatkozáslistájában. A csomagok telepítésre több lehetőségünk is van: használhatjuk a menüsor `Tools -> Install Packages` menüpontját, vagy a jobb alsó ablak *Packages* fül Install menüpontját, illetve az editor ablakban az `install.packages()` parancsot futtatva, ahol a ()-be a telepíteni kívánt csomag nevét kell beírnunk (pl.: `install.packages(dplyr)`).
 
 
@@ -150,7 +151,7 @@ labels(survey_response)
 
 
 
-### Data frame
+### Data frame {#data-frame}
 Az adat táblák (data frame) a statisztikai és adatelemzési folyamatok egyik leggyakrabban használt adattárolási formája. Amikor lehetséges akkor a 'hosszú' formátumban használjuk (az R közösség a 'tidy' jelzővel illeti), aholtéglalap alakú adatszerkezetek, ahol minden sor egy megfigyelés és minden oszlop egy változó [TIDY CITATION]. Egy data frame többféle típusú adatot tartalmazhat. A data frame-k különféle oszlopokból állhatnak, amelyek különféle típusú adatokat tartalmazhatnak, de egy oszlop csak egy típusú adatból állhat. A lent bemutatott data frame 7 megfigyelést és 4 féle változót tartalmaz (id, country, pop, continent). 
 
 
@@ -175,3 +176,176 @@ orszag_adatok[1, 4]
 orszag_adatok$orszag
 ```
 
+
+## Vizualizáció
+
+```{r}
+library(ggplot2)
+library(gapminder)
+```
+
+
+Az elemzéseinkhez használt data frame adatainak alapján a `ggplot2` csomag segítségével lehetőségünk van különböző vizualizációk készítésére is. 
+
+
+A `ggplot2` használata során különböző témákat alkalmazhatunk, melyek részletes leírása megtalálható: https://ggplot2.tidyverse.org/reference/ggtheme.html
+
+Abban az esetben, ha nem választunk témát, a `ggplot2` a következő ábrán is látható alaptémát használja. Ha például a szürke helyett fehér hátteret szeretnénk, alkalmazhatjuk a `theme_minmal()`parancsot. Szintén gyakran alkalmazott ábra alap a `thema_bw()`, ami az előzőtől az ábra keretezésében különbözik. Ha fehér alapon, de a beosztások vonalait feketén szeretnénk megjeleníteni, alkalmazhatjuk a `theme_linedraw()` függvényt, a `theme_void()` segítségével pedig egy fehér alapon, beosztásoktól mentes alapot kapunk, a `theme_dark()` pedig sötét hátteret eredményez.  A `theme_classic()` segítségével az x és y tengelyt jeleníthetjük meg fehér alapon. 
+
+Egy ábra készítésének alapja mindig a használni kívánt adatkészlet beolvasása, illetve az ábrázolni kiíván változtót vagy változók megadása.
+
+Ezt követi a megfelelő alakzat kiválasztása, attól függően például, hogy eloszlást, változást, adatok közötti kapcsolatot, vagy elétéseket akarunk ábrázolni. A ` geom` az a geometriai objektum, a mit a diagram az adatok megjelenítésére használ. A`gglpot2` több mint 40 féle alakzat alkalmazására ad lehetőséget, ezek közül néhány gyakoribbat mutatunk be az alábbiakban. Az alakzatokról részletes leírása található például az alábbi linken:
+https://r4ds.had.co.nz/data-visualisation.html
+
+A következőkben a már korábban is használt `gapminder` adatok segítségével, személetetjük az adatok vizualizálásának alapjait. 
+Először egyszerű alapbeállítások mellett egy histogram típusú vizualizációt készítünk.
+
+```{r warning=FALSE, message=FALSE}
+ggplot(
+  data = gapminder, 
+  mapping = aes(x = gdpPercap)
+) + 
+  geom_histogram() 
+```
+
+Lehetőségünk van arra, hogy az alakzat színét megváltoztatássuk. A használható színek és színkódok megtalálhatóak a `ggplot2` leírásában: https://ggplot2-book.org/scale-colour.html
+
+```{r warning=FALSE, message=FALSE}
+ggplot(
+  data = gapminder,
+  mapping = aes(x = gdpPercap)
+) +
+  geom_histogram(fill = "yellow", colour = "green") 
+```
+
+Meghatározhatjuk külön-külön a histogram x és y tengelyén ábrázolni kívánt adatokat és választhatjuk azok pontszerű ábrázolását is.
+
+```{r warning=FALSE, message=FALSE}
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap,
+    y = lifeExp
+  )
+) +
+  geom_point() 
+```
+
+Ahogy az előzőekben, itt is megváltoztathatjuk az ábra színét.
+
+```{r warning=FALSE, message=FALSE}
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap,
+    y = lifeExp
+  )
+) +
+  geom_point(colour = "blue")
+```
+
+Az fenti script kibővítésével az egyes kontinensek adatait különböző színnel ábrázolhatjuk, az x és y tengelyt elnevezhetjük, a histogramnak címet és alcímet adhatunk, illetve az adataink forrását is feltüntethetjük az alábbi módon:
+
+```{r warning=FALSE, message=FALSE}
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap,
+    y = lifeExp,
+    color = continent
+  )
+) + 
+  geom_point() +
+  labs(
+    x = "GDP per capita (log $)", 
+    y = "Life expectancy",
+    title = "Connection between GDP and Life expectancy",
+    subtitle = "Points are country-years",
+    caption = "Source: Gapminder dataset"
+  )
+```
+
+Az ábrán található feliratok méretének, betűtípusának és betűszínének megválasztásra is lehetőségünk van.
+
+```{r warning=FALSE, message=FALSE}
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap,
+    y = lifeExp,
+    color = continent
+  )
+) + 
+  geom_point() +
+  labs(
+    x = "GDP per capita (log $)", 
+    y = "Life expectancy",
+    title = "Connection between GDP and Life expectancy",
+    subtitle = "Points are country-years",
+    caption = "Source: Gapminder dataset"
+  ) +
+  theme(plot.title = element_text(
+    size = 12, 
+    colour = "red"
+  ))
+```
+
+Készíthetünk oszlopdiagramot is, amit a `ggplot2` diamonds adatkészletén személtetünk
+ 
+```{r warning=FALSE, message=FALSE}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut))
+```
+
+Itt is lehetőségünk van arra, hogy a diagram színét megváltoztassuk.
+
+```{r warning=FALSE, message=FALSE}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut), fill = "darkgreen")
+```
+
+De arra is lehetőségünk van, hogy az egyes oszlopok eltérő színűek legyenek.
+
+```{r warning=FALSE, message=FALSE}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut, fill = cut))
+```           
+ Arra is van lehetőségünk, hogy egyszerre több változót is ábrázoljunk.
+ 
+```{r warning=FALSE, message=FALSE}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut, fill = clarity))
+```         
+
+Arra ggplot2 segítségével arra is lehetőségünk van, hogy csv-ből beolvasott adatainkat vizualizáljuk.
+
+```{r warning=FALSE, message=FALSE, eval=FALSE}
+plot_cap_1 <- read.csv("data/plot_cap_1.csv", head = TRUE, sep = ";") 
+ggplot(plot_cap_1, aes(Year, fill = Subtopic)) + 
+  scale_x_discrete(limits = c(1957, 1958, 1959, 1960, 1961, 1962, 1963)) +
+  geom_bar(position = "dodge") + 
+  labs(
+    x = NULL, y = NULL, 
+    title = "A Magyar Közlönyben kihirdetett agrárpolitikai jogszabályok", 
+    subtitle = "N=445"
+  ) + 
+  coord_flip() + # az ábra tipusa
+  theme_minimal() +
+  theme(plot.title = element_text(size = 12)) 
+```
+
+A csv-ből belolvasott adatainból kördiagramot is készíthetünk
+
+```{r warning=FALSE, message=FALSE, eval=FALSE}
+pie <- read.csv("data/pie.csv", head = TRUE, sep = ";")
+
+ggplot(pie, aes(x = "", y = value, fill = Type)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  scale_fill_brewer(palette = "GnBu") +
+  labs(
+    title = "A Magyar Közlönyben megjelent jogszabályok típusai",
+    subtitle = "N = 445"
+  ) +
+  theme_void()
+```

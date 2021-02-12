@@ -4,6 +4,7 @@ author: "Sebők Miklós, Ring Orsolya"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: true
+always_allow_html: true
 output:
   bookdown::gitbook: default
   latex_document: default
@@ -13,10 +14,18 @@ output:
 
 ```{r echo=FALSE, eval=FALSE}
 
+#latex_document: default
+
 # run this chunk in the console to build the book and clean up junk
 
+# (1)
 # bookdown::render_book('index.Rmd', 'all')
 
+# (2)
+# for akos only: 
+# source('latex_export.r')
+
+# (3)
 # bookdown::clean_book(TRUE)
 
 ```
